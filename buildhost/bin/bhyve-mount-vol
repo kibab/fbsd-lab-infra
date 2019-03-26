@@ -1,0 +1,4 @@
+#!/bin/sh
+#zfs set volmode=geom tank/tvol
+fsck -y -t ufs /dev/zvol/zroot/tvolp1
+mount /dev/zvol/zroot/tvolp1 /iocage/jails/buildhost/root/home/kibab/repos/fbsd-bbb/inst-amd64

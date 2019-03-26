@@ -1,0 +1,16 @@
+#!/bin/sh
+set -eu
+if [ -z $ARCH ]; then
+   echo '$ARCH is not defined. Set to amd64|armv7|arm64. exiting'
+   exit 1
+fi
+
+export PROJROOT=/home/kibab/repos/fbsd-bbb
+export MAKEOBJDIRPREFIX=$PROJROOT/obj-${ARCH}
+export DESTDIR=$PROJROOT/inst-${ARCH}
+export DISTDIR=${DESTDIR}
+
+SVN_REV=$(cd $PROJROOT/freebsd && git log -1 master --pretty=format:%N | cut -f3 -d=)
+TAR_NAME="FreeBSD-${ARCH}-r${SVN_REV}.tar.gz"
+echo "=== Creating TAR for FreeBSD/$ARCH at SVN rev #$SVN_REV -> $TAR_NAME"
+cd $DESTDIR && time tar czf ../$TAR_NAME .

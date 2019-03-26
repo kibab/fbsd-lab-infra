@@ -1,0 +1,25 @@
+#!/bin/sh
+
+set -e
+
+if [ $# -ne 1 ]; then
+   echo Usage: $0 mnt_root
+   exit 1
+fi
+
+MNT=$1
+
+#echo 'console="comconsole vidconsole"' >> $1/boot/loader.conf
+echo 'vfs.root.mountfrom="ufs:/dev/vtbd0p1"' >> $MNT/boot/loader.conf
+echo 'hostname="fbsd13-dev.bakulin.de"' >> $MNT/etc/rc.conf
+echo 'sendmail_enable="NONE"' >> $MNT/etc/rc.conf
+echo 'sshd_enable="YES"' >> $MNT/etc/rc.conf
+echo 'fsck_y_enable="YES"' >> $MNT/etc/rc.conf
+echo 'ifconfig_vtnet0="inet 10.100.1.2 netmask 0xffffff00"' >> $MNT/etc/rc.conf
+echo 'ddb_enable="YES"' >> $MNT/etc/rc.conf
+echo 'ddb_config=/etc/ddb_config' >> $MNT/etc/rc.conf
+
+echo 'PermitRootLogin yes' >> $MNT/etc/ssh/sshd_config
+echo 'script kdb.enter.panic=gdb' > $MNT/etc/ddb_config
+mkdir -p -m 0700 $MNT/root/.ssh
+head -1 ~kibab/.ssh/authorized_keys > $MNT/root/.ssh/authorized_keys

@@ -1,0 +1,5 @@
+#!/bin/sh
+IP=10.100.1.2
+OPT="-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+
+ssh $OPT root@$IP "/sbin/reboot"

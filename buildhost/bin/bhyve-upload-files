@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+#ifconfig tap1 | grep 10.100.1 || sudo ifconfig tap1 inet 10.100.1.1
+sudo ifconfig tap1 up
+OBJROOT=`dirname $0`/obj-amd64/home/kibab/repos/fbsd-bbb/freebsd
+KERNROOT=$OBJROOT/sys/MMCCAM
+MODROOT=$KERNROOT/modules/home/kibab/repos/fbsd-bbb/freebsd/sys/modules/
+OPT="-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+DEST=root@10.100.1.2
+scp $OPT $MODROOT/mmcnull/mmcnull.ko $DEST:/boot/kernel/
+scp $OPT $KERNROOT/kernel $DEST:/boot/kernel/
+scp $OPT $OBJROOT/sbin/camcontrol/camcontrol $DEST:/sbin/camcontrol
+scp $OPT $OBJROOT/usr.bin/sdiotool/sdiotool $DEST:/usr/bin/sdiotool

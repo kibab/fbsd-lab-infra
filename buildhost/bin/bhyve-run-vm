@@ -1,0 +1,2 @@
+#!/bin/sh
+sudo sh /usr/share/examples/bhyve/vmrun.sh -c 1 -m 512M -t tap1 -d /dev/zvol/zroot/tvol -g 6466 fbsd
