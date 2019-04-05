@@ -1,0 +1,6 @@
+# Mapping between board names and whatever unique strings there are in USB2Serial adapter identifiers
+# In my case, Rpi is connected over FTDI-based chipset that happens to have a serial number,
+# and Wandboard / NanoPi use Prolific-based converters with slightly different versions.
+rpi:A600CHVV
+npi:release=0x0300
+wb:release=0x0400
