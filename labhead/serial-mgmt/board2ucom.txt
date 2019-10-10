@@ -4,3 +4,4 @@
 rpi:A600CHVV
 npi:release=0x0300
 wb:release=0x0400
+r64:A600CHV1
