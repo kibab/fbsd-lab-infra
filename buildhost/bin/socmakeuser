@@ -24,6 +24,5 @@ export MAKEOBJDIRPREFIX=$PROJROOT/obj-${ARCH}
 export DESTDIR=$PROJROOT/inst-${ARCH}
 export DISTDIR=${DESTDIR}
 
-make -C $PROJROOT/freebsd __MAKE_CONF=$PROJROOT/make.conf SRCCONF=$PROJROOT/src.conf -C $PROJROOT/freebsd $ADD_ARGS $@
 cd $PROJROOT/freebsd/$bdir
 eval "$(ARCH=$ARCH socmake buildenvvars) MAKEOBJDIRPREFIX=$MAKEOBJDIRPREFIX" make
