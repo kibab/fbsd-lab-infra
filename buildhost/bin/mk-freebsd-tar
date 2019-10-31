@@ -5,12 +5,17 @@ if [ -z $ARCH ]; then
    exit 1
 fi
 
-export PROJROOT=/home/kibab/repos/fbsd-bbb
-export MAKEOBJDIRPREFIX=$PROJROOT/obj-${ARCH}
-export DESTDIR=$PROJROOT/inst-${ARCH}
-export DISTDIR=${DESTDIR}
+SRC_PATH=${SRC_PATH:-/freebsd-builder/freebsd-src}
+DESTDIR=${DESTDIR:-/freebsd-builder/inst-${ARCH}}
+SVN_REV=$(cd $SRC_PATH && git log -200 --pretty=format:%N | head -2 | tail -1 | cut -f3 -d=)
 
-SVN_REV=$(cd $PROJROOT/freebsd && git log -1 master --pretty=format:%N | cut -f3 -d=)
+if [ -z "$SVN_REV" ]; then
+    echo "Cannot get SVN revision of FreeBSD src tree in $SRC_PATH"
+    exit 1
+fi
 TAR_NAME="FreeBSD-${ARCH}-r${SVN_REV}.tar.gz"
-echo "=== Creating TAR for FreeBSD/$ARCH at SVN rev #$SVN_REV -> $TAR_NAME"
-cd $DESTDIR && time tar czf ../$TAR_NAME .
+TAR_PATH=/tmp/$TAR_NAME
+
+echo "=== Creating TAR for FreeBSD/$ARCH at SVN rev #$SVN_REV -> $TAR_NAME" >&2
+cd $DESTDIR && time tar czf /tmp/$TAR_NAME . || exit 1
+echo $TAR_PATH
