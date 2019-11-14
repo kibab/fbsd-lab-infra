@@ -19,10 +19,9 @@ esac
 
 bdir=$1
 
-export PROJROOT=/home/kibab/repos/fbsd-bbb
-export MAKEOBJDIRPREFIX=$PROJROOT/obj-${ARCH}
-export DESTDIR=$PROJROOT/inst-${ARCH}
-export DISTDIR=${DESTDIR}
+SRCDIR=/freebsd-builder/freebsd-src
+OBJDIR=/freebsd-builder/build
+DESTDIR=/freebsd-builder/inst-${ARCH}
+SOCMAKE=/freebsd-builder/fbsd-lab-infra/buildhost/bin/socmake
 
-cd $PROJROOT/freebsd/$bdir
-eval "$(ARCH=$ARCH socmake buildenvvars) MAKEOBJDIRPREFIX=$MAKEOBJDIRPREFIX" make
+echo "cd $SRCDIR/$bdir && \$(ARCH=$ARCH $SOCMAKE buildenvvars) MAKEOBJDIRPREFIX=$OBJDIR make $ADD_ARGS"
