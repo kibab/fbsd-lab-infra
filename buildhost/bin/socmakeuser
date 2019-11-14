@@ -24,4 +24,4 @@ OBJDIR=/freebsd-builder/build
 DESTDIR=/freebsd-builder/inst-${ARCH}
 SOCMAKE=/freebsd-builder/fbsd-lab-infra/buildhost/bin/socmake
 
-echo "cd /freebsd-builder/freebsd-src/sbin/camcontrol && ENVV=\$(echo \$(eval \$(eval \"ARCH=arm64 /freebsd-builder/fbsd-lab-infra/buildhost/bin/socmake buildenvvars\")) MAKEOBJDIRPREFIX=/freebsd-builder/build); eval \"\$ENVV make\""
+echo "cd $SRCDIR/$bdir && ENVV=\$(echo \$(eval \$(eval \"ARCH=arm64 $SOCMAKE buildenvvars\")) MAKEOBJDIRPREFIX=$OBJDIR); eval \"\$ENVV make\""
