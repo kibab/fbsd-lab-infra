@@ -7,7 +7,7 @@ fi
 
 SRC_PATH=${SRC_PATH:-/freebsd-builder/freebsd-src}
 DESTDIR=${DESTDIR:-/freebsd-builder/inst-${ARCH}}
-SVN_REV=$(cd $SRC_PATH && git log -200 --pretty=format:%N | head -2 | tail -1 | cut -f3 -d=)
+SVN_REV=$(cd $SRC_PATH && git log -200 --pretty=format:%N | grep . | head -1| cut -f3 -d=)
 
 if [ -z "$SVN_REV" ]; then
     echo "Cannot get SVN revision of FreeBSD src tree in $SRC_PATH"
