@@ -1,0 +1,1 @@
+REMOTECMD="sudo $(ARCH=amd64 ~/repos/fbsd-bbb/lab-infra/buildhost/bin/socmake distrib-dirs distribution installworld installkernel KERNCONF=GENERIC-MMCCAM)" ./azure-build
