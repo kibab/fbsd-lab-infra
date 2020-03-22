@@ -1,5 +1,0 @@
-#!/usr/local/bin/kermit +
-SET LINE /dev/cuaU\%1
-SET CARRIER-WATCH OFF
-SET SPEED 115200
-CONNECT

@@ -3,5 +3,7 @@ set -eu
 board=$1 || exit 1
 myloc=$(dirname $0)
 comport=$(devinfo -v | grep $(grep $board $myloc/board2ucom.txt  | cut -f2 -d:) | sed -E 's,.*ttyname=U([0-9]+).*,\1,g')
-echo "Board $board is at ttyU$comport"
-$myloc/conn-arg0 $comport
+speed=$(grep $board $myloc/board2ucom.txt  | cut -f3 -d:)
+echo "Board $board is at ttyU$comport @ $speed b/s"
+#$myloc/conn-arg0 $comport $speed # Kermit
+cu -l /dev/ttyU$comport -s $speed
