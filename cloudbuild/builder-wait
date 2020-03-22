@@ -1,0 +1,11 @@
+#!/bin/sh
+vmip="fbsd-builder.westeurope.cloudapp.azure.com"
+echo === Waiting for $vmip to be reachable over SSH
+ec=1
+while [ "$ec" -eq 1 ]; do
+    nc -z -w1 $vmip 22
+    ec=$?
+    echo -n "."
+    sleep 1
+done
+echo

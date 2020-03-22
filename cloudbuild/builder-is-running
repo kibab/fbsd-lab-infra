@@ -1,0 +1,5 @@
+#!/bin/sh
+vmip="fbsd-builder.westeurope.cloudapp.azure.com"
+echo === Checking if $vmip is reachable over SSH
+    nc -z -w1 $vmip 22 2>/dev/null
+    exit $?

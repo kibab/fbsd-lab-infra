@@ -19,9 +19,8 @@ case $ARCH in
 	ADD_ARGS="ARCH=armv6 TARGET_ARCH=armv6"
 	;;
 esac
-export PROJROOT=/home/kibab/repos/fbsd-bbb
-export MAKEOBJDIRPREFIX=$PROJROOT/obj-${ARCH}
-export DESTDIR=$PROJROOT/inst-${ARCH}
-export DISTDIR=${DESTDIR}
+SRCDIR=/freebsd-builder/freebsd-src
+OBJDIR=/freebsd-builder/build
+DESTDIR=/freebsd-builder/inst-${ARCH}
 
-make -C $PROJROOT/freebsd __MAKE_CONF=$PROJROOT/make.conf SRCCONF=$PROJROOT/src.conf -C $PROJROOT/freebsd $ADD_ARGS $@
+echo "MAKEOBJDIRPREFIX=$OBJDIR DISTDIR=$DESTDIR DESTDIR=$DESTDIR make -C $SRCDIR __MAKE_CONF=/make.conf SRCCONF=/src.conf $ADD_ARGS $@"

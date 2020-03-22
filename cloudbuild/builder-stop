@@ -1,0 +1,4 @@
+#!/bin/sh
+for action in stop deallocate; do
+  az vm $action --resource-group FreeBSD_Builder_Group --name fbsd-builder
+done

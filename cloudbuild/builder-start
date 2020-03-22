@@ -1,0 +1,2 @@
+#!/bin/sh
+az vm start --resource-group FreeBSD_Builder_Group --name fbsd-builder
