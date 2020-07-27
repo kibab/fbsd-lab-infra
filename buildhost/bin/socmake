@@ -5,6 +5,7 @@ if [ -z $ARCH ]; then
    exit 1
 fi
 
+SUDO=${SUDO:-}
 case $ARCH in
     amd64)
 	ADD_ARGS=""
@@ -23,4 +24,4 @@ SRCDIR=/freebsd-builder/freebsd-src
 OBJDIR=/freebsd-builder/build
 DESTDIR=/freebsd-builder/inst-${ARCH}
 
-echo "MAKEOBJDIRPREFIX=$OBJDIR DISTDIR=$DESTDIR DESTDIR=$DESTDIR make -C $SRCDIR __MAKE_CONF=/make.conf SRCCONF=/src.conf $ADD_ARGS $@"
+echo "$SUDO MAKEOBJDIRPREFIX=$OBJDIR DISTDIR=$DESTDIR DESTDIR=$DESTDIR make -C $SRCDIR __MAKE_CONF=/make.conf SRCCONF=/src.conf $ADD_ARGS $@"
