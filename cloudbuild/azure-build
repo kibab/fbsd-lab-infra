@@ -14,7 +14,7 @@ MAKE="MAKEOBJDIRPREFIX=$OBJDIR make -j32 buildworld buildkernel NO_CLEAN=yes KER
 #MAKE="MAKEOBJDIRPREFIX=$OBJDIR make -j16 -C $SRCDIR buildkernel KERNCONF=GENERIC-MMCCAM NO_CLEAN=yes TARGET=arm64 TARGET_ARCH=aarch64"
 #MAKE="MAKEOBJDIRPREFIX=$OBJDIR make-C $SRCDIR buildworld buildkernel NO_CLEAN=yes KERNCONF=GENERIC-MMCCAM"
 
-ISH_ARGS='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/terraform'
+ISH_ARGS='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa_github'
 
 VM="fbsd-builder.bakulin.de"
 
@@ -32,7 +32,7 @@ echo "************************************************************"
 ./builder-is-running || (
     echo === Starting VM
     ./builder-start
-    echo === Waiting for $vmip to be reachable over SSH
+    echo === Waiting for $VM to be reachable over SSH
     ./builder-wait
 )
 
