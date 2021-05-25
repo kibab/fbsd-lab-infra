@@ -24,4 +24,6 @@ OBJDIR=/freebsd-builder/build
 DESTDIR=/freebsd-builder/inst-${ARCH}
 SOCMAKE=/freebsd-builder/fbsd-lab-infra/buildhost/bin/socmake
 
+ADD_ARGS="${ADD_ARGS} CROSS_TOOLCHAIN=llvm90"
+
 echo "cd $SRCDIR/$bdir && ENVV=\$(echo \$(eval \$(eval \"ARCH=$ARCH $SOCMAKE buildenvvars\")) MAKEOBJDIRPREFIX=$OBJDIR); eval \"\$ENVV make\""

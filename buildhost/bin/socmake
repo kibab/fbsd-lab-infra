@@ -24,4 +24,6 @@ SRCDIR=/freebsd-builder/freebsd-src
 OBJDIR=/freebsd-builder/build
 DESTDIR=/freebsd-builder/inst-${ARCH}
 
+ADD_ARGS="${ADD_ARGS} CROSS_TOOLCHAIN=llvm90"
+
 echo "$SUDO MAKEOBJDIRPREFIX=$OBJDIR DISTDIR=$DESTDIR DESTDIR=$DESTDIR make -C $SRCDIR __MAKE_CONF=/make.conf SRCCONF=/src.conf $ADD_ARGS $@"
